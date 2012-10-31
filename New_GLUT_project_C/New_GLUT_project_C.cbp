@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="New_GLUT_project_C" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Linux_x86_32bit_Debug">
+				<Option output="Build/Linux_x86_32bit_Debug/Hello_glut_world.linux_x86_32.exe" prefix_auto="1" extension_auto="0" />
+				<Option object_output="Object_code/Linux_x86_32bit_Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-lglut" />
+				</Linker>
+			</Target>
+			<Target title="Linux_x86_32bit_Release">
+				<Option output="Build/Linux_x86_32bit_Release/Hello_glut_world.linux_x86_32.bit.exe" prefix_auto="1" extension_auto="0" />
+				<Option object_output="Object_code/Linux_x86_32bit_Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Source_code/Project_specific_configurations/Debug.h" />
+		<Unit filename="Source_code/Project_specific_configurations/Math.h" />
+		<Unit filename="Source_code/Project_specific_configurations/Max_value.h" />
+		<Unit filename="Source_code/Project_specific_configurations/Software_info.h" />
+		<Unit filename="Source_code/Project_specific_configurations/System_category.h" />
+		<Unit filename="Source_code/Show_software_info/Show_software_info.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source_code/Show_software_info/Show_software_info.h" />
+		<Unit filename="Source_code/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source_code/pauseProgram/Pause_program.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source_code/pauseProgram/Pause_program.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars set="locale_en_us" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
