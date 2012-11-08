@@ -31,7 +31,7 @@
 #include "../Project_specific_configurations/System_category.h"
 
 /*////////程式所include的標頭檔(Included Headers)////////*/
-/* we need printf and scanf*/
+/* Standard I/O functions */
   #include <stdio.h>
 
 /* we need system() */
