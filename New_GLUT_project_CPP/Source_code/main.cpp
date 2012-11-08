@@ -61,7 +61,8 @@ int main(int argc, char *argv[]){
 
 	/* GLUT 初始化？ */
 	glutInit(&argc, argv);
-	glutInitWindowPosition(0, 0);
+	glutInitWindowPosition(-1, -1);
+		/* 讓視窗管理員(window manager)決定視窗的位置 */
 	glutInitWindowSize(600,360);
 	glutInitDisplayMode(GLUT_RGBA);
 	glutCreateWindow(SOFTWARE_NAME);
