@@ -11,10 +11,6 @@ main.cpp
 		/* for EXIT_* macro */
 
 /* GLUT Library Definitions */
-#ifdef _WIN32
-    #include <windows.h>
-        /* glut.h depends on windows.h on Windows platform */
-#endif
 	#include <GL/glut.h>
 
 /* Vdragon's C Libraries */
@@ -65,12 +61,16 @@ int main(int argc, char *argv[]){
 
 	/* GLUT 初始化？ */
 	glutInit(&argc, argv);
-	glutInitWindowPosition(-1, -1);
-		/* 讓視窗管理員(window manager)決定視窗的位置 */
-	glutInitWindowSize(600,360);
-	glutInitDisplayMode(GLUT_RGBA);
-	glutCreateWindow(SOFTWARE_NAME);
-		/* 因為我們沒有要建立多個視窗，我們不需要使用此函式傳回的視窗(window)ID */
+
+	/* 設定視窗相關參數 */
+		glutInitWindowPosition(-1, -1);
+			/* 讓視窗管理員(window manager)決定視窗的位置 */
+		glutInitWindowSize(600,360);
+			/* 視窗大小 */
+		glutInitDisplayMode(GLUT_RGBA);
+			/* 視窗顯示模式 */
+		glutCreateWindow(SOFTWARE_NAME);
+			/* 建立視窗（因為我們沒有要建立多個視窗，我們不需要使用此函式傳回的視窗(window)ID） */
 
 	/* Register callback functions */
 		glutKeyboardFunc(cbKeyboard);
