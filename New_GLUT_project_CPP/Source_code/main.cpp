@@ -24,12 +24,17 @@ main.cpp
 	#include "Messages_templates/zh_TW.h"
 
 /*||||| 常數與巨集 | Constants & Macros |||||*/
-	#define MESSAGE_MOUSE_BUTTON_PRESSED "按下了"
-	#define MESSAGE_MOUSE_BUTTON_RELEASED "放開了"
-	#define MESSAGE_MOUSE_BUTTON_LEFT "滑鼠左鍵"
-	#define MESSAGE_MOUSE_BUTTON_RIGHT "滑鼠右鍵"
-	#define MESSAGE_MOUSE_BUTTON_MIDDLE "滑鼠中鍵"
-	#define MESSAGE_MOUSE_BUTTON_UNKNOWN "未知的滑鼠按鈕"
+	/* application window size */
+		#define WINDOW_WIDTH 600
+		#define WINDOW_HEIGHT 360
+
+	/* message of cbMouse() */
+		#define MESSAGE_MOUSE_BUTTON_PRESSED "按下了"
+		#define MESSAGE_MOUSE_BUTTON_RELEASED "放開了"
+		#define MESSAGE_MOUSE_BUTTON_LEFT "滑鼠左鍵"
+		#define MESSAGE_MOUSE_BUTTON_RIGHT "滑鼠右鍵"
+		#define MESSAGE_MOUSE_BUTTON_MIDDLE "滑鼠中鍵"
+		#define MESSAGE_MOUSE_BUTTON_UNKNOWN "未知的滑鼠按鈕"
 
 /*||||| Definition of data type, enumeration, data structure and class |||||*/
 	/* 選操作選單的項目 */
@@ -53,6 +58,11 @@ main.cpp
 	void cbMenuSelectOperation(int selection);
 
 /*||||| 全域變數 | Global Variables |||||*/
+	/* Current window width and height */
+		int window_width = WINDOW_WIDTH, window_height = WINDOW_HEIGHT;
+
+	/* WORKAROUND : Mouse callback function will still be called with "button released" when the clicked object is actually a menu, workaround this problem by checking if the mouse release event is actually just after menu callback. */
+		char workaround_menu_clicked = 'n';
 
 /*||||| 主要程式碼 | Main Code |||||*/
 int main(int argc, char *argv[]){
@@ -70,7 +80,7 @@ int main(int argc, char *argv[]){
 			/* 讓視窗管理員(window manager)決定視窗的位置 */
 		glutInitWindowSize(600,360);
 			/* 視窗大小 */
-		glutInitDisplayMode(GLUT_RGBA);
+		glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
 			/* 視窗顯示模式 */
 		glutCreateWindow(SOFTWARE_NAME);
 			/* 建立視窗（因為我們沒有要建立多個視窗，我們不需要使用此函式傳回的視窗(window)ID） */
@@ -122,6 +132,12 @@ void cbKeyboard(unsigned char key, int mouse_x, int mouse_y){
 }
 
 void cbMouse(int button, int state, int x, int y){
+	/* workaround : avoid mouse event when menu event just happened */
+		if(workaround_menu_clicked == 'y'){
+			workaround_menu_clicked = 'n';
+			return;
+		}
+
 #ifndef NDEBUG
 	std::cout << DEBUG_TAG "您於(" << x << ',' <<  y << ")位置"
 		<< (state == GLUT_DOWN ? MESSAGE_MOUSE_BUTTON_PRESSED : MESSAGE_MOUSE_BUTTON_RELEASED);
@@ -163,7 +179,8 @@ void cbDisplay(void){
 		glClearColor(0, 0, 0, 0);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-	/* 將背景 buffer 置換出去 */
+	/* Flush buffer, if double buffer mode swap buffer to display */
+		glFlush();
 		glutSwapBuffers();
 
 	return;
@@ -185,6 +202,8 @@ void cbReshape(int width, int height){
 void cbMenuMain(int selection){
 	/* do nothing now due to no clickable events */
 
+	/* workaround */
+	workaround_menu_clicked = 'y';
 	return;
 }
 
@@ -208,6 +227,7 @@ void cbMenuSelectOperation(int selection){
 #ifndef NDEBUG
 	std::cout << "。" << std::endl;
 #endif
-
+	/* workaround */
+	workaround_menu_clicked = 'y';
 	return;
 }
