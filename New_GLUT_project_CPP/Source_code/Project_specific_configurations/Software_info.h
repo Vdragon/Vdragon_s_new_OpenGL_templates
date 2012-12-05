@@ -8,7 +8,7 @@
   #endif
 
   /*軟體名稱*/
-  #define SOFTWARE_NAME "尚未命名的 OpenGL 軟體"
+  #define SOFTWARE_NAME "Unnamed OpenGL program"
   /*軟體開發者名稱*/
   #define DEVELOPER_NAME "Vdragon"
   /*軟體開發者的電子郵件地址*/

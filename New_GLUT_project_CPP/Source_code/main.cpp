@@ -87,12 +87,12 @@ int main(int argc, char *argv[]){
 		/* 註冊一個選單的 callback 函式並獲取一個 menu handle */
 			handle_submenu_selectOperation = glutCreateMenu(cbMenuSelectOperation);
 		/* 新增選單中的項目 */
-			glutAddMenuEntry("結束程式 | Exit program", SELECTOPERATION_EXIT);
+			glutAddMenuEntry("Exit program", SELECTOPERATION_EXIT);
 
 		/* 註冊主選單 */
 			glutCreateMenu(cbMenuMain);
 		/* 新增子選單於主選單上 */
-			glutAddSubMenu("選取操作 | Select operation", handle_submenu_selectOperation);
+			glutAddSubMenu("Select operation", handle_submenu_selectOperation);
 		/* 將此選單與滑鼠中鍵綁定 */
 			glutAttachMenu(GLUT_RIGHT_BUTTON);
 
