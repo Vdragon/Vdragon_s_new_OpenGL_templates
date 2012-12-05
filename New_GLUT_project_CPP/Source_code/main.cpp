@@ -192,6 +192,12 @@ void cbReshape(int width, int height){
 #endif
 
 	/* TODO : 這裡有一些還沒看懂的範例函式呼叫 */
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0.0, window_width, 0.0, window_height, -1.0, 1.0);
+		glViewport(0,0,window_width,window_height);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 
 	/* 畫面被更動了，讓 display callback 函式再被呼叫 */
 		glutPostRedisplay();
